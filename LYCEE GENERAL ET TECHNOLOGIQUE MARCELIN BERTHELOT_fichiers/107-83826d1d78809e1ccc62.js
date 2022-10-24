@@ -1,1 +1,0 @@
-(this.webpackJsonp=this.webpackJsonp||[]).push([[107],{228:function(e,t){e.exports={dummyElementTitle:"Nouvel élément",weekAbbr:"S.",datePicker:{from:"Du",to:"au"}}}}]);
