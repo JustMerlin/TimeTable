@@ -49,7 +49,7 @@ let displaying = document.getElementsByClassName("displaying");
 displaying[0].style.display = "block";
 
 var minuts = Math.floor((d.getMinutes() + ((d.getHours() - 8) * 60)) / 5)
-alert(minuts)
+
 
 let bar = document.getElementsByClassName("scheduler__events-overlay scheduler__events-overlay--has-events js-scheduler__events-overlay");
 let a = week - 1;
