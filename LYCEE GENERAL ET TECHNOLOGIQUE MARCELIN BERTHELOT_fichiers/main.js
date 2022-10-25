@@ -15,15 +15,19 @@ const map = new Map([
     [11, 'decembre'],
 ]);
 
-//Get the element of name in the page
+//Get the element that affich the name on the page
 let pageUsername = document.getElementsByClassName("username");
 
 //Change ENT username with the username request
-var userResponce = prompt("What's your name:").split(" ");
+var userResponce = prompt("What's your entire name (firstname name):").split(" ");
+
+while(userResponce.length != 2 || userResponce[1].length == 0){
+    userResponce = prompt("Wrong! What's your ENTIRE name (firstname name):").split(" ");
+}
 
 pageUsername[0].textContent = userResponce[0] + " " +userResponce[1].toUpperCase();
 
-//Get the list of element for day of the week
+//Get the list of day
 let agenda = document.getElementsByClassName("scheduler__header-date js-scheduler__header-date text--ellipsis");
 
 //Recup date, day in week and month
@@ -63,6 +67,7 @@ for(let i = 0; i < (agenda.length); i++){
         lastdate = date;
     }
 }
+
 //Change the period
 let period = document.getElementsByClassName("hide-lt--sm js-scheduler__datepicker-title");
 
@@ -98,11 +103,19 @@ function myCallback() {
 }
 
 
-var isMobile = iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-if (isMobile) {
 
-    pageUsername[0].textContent = prompt("test :");
-}else{
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    const len = agenda.length;
+    var supp = 0;
+    for(var b = 0; b < (len); b++){
+
+        if(b != (week - 1)){
+            agenda[b - supp].parentElement.parentElement.parentElement.parentElement.remove();
+        
+            supp += 1;
+        }
     
-    pageUsername[0].textContent = "false";
-}
+    }
+  }else{
+    document.write("not mobile");
+  }
