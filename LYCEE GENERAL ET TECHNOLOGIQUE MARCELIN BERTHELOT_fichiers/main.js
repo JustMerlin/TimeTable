@@ -59,6 +59,20 @@ for(let i = 0; i < (agenda.length); i++){
         agenda[i].style.fontWeight = 700;
         let boldation = document.getElementsByClassName("scheduler__header-day js-scheduler__header-day text--ellipsis");
         boldation[i].style.fontWeight = 700;
+        
+        let yellow = document.getElementsByClassName("scheduler__header scheduler__header--has-events  js-scheduler__header ");
+        yellow[i].classList = "scheduler__header scheduler__header--has-events scheduler__header--today bg--warn-lighter  js-scheduler__header ";
+        let yellow2 = document.getElementsByClassName("scheduler__slot  scheduler__slot--break js-scheduler__day-slot");
+        yellow2[i].classList = "scheduler__slot scheduler__slot--today js-scheduler__slot--today scheduler__slot--break js-scheduler__day-slot";
+        
+        let yellow3 = yellow[i].parentElement.childNodes;
+
+        for(x = 0;x < (yellow3.length); x++){
+            if(yellow3[x].classList == "scheduler__slot   js-scheduler__day-slot"){
+                yellow3[x].classList = "scheduler__slot scheduler__slot--today js-scheduler__slot--today  js-scheduler__day-slot";
+            }
+            
+        }
     }
 
     if(i == 0){
