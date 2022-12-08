@@ -15,6 +15,18 @@ const map = new Map([
     [11, 'decembre'],
 ]);
 
+Date.prototype.getWeek = function() {
+    var date = new Date(this.getTime());
+    date.setHours(0, 0, 0, 0);
+    // Thursday in current week decides the year.
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    // January 4 is always in week 1.
+    var week1 = new Date(date.getFullYear(), 0, 4);
+    // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+    return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
+                          - 3 + (week1.getDay() + 6) % 7) / 7);
+  }
+
 //Get the element that affich the name on the page
 let pageUsername = document.getElementsByClassName("username");
 
@@ -35,6 +47,11 @@ const d = new Date();
 var num = d.getDate();
 var week = d.getDay();
 var month = (map.get(d.getMonth())).toString();
+var weeknum = d.getWeek();
+
+//Set the correct week of the year
+let semaine = document.getElementsByClassName("scheduler__week js-scheduler__week");
+semaine[0].textContent = "S. " + weeknum
 
 let firstdate;
 let lastdate;
@@ -68,6 +85,7 @@ for(let i = 0; i < (agenda.length); i++){
         let yellow3 = yellow[i].parentElement.childNodes;
 
         for(x = 0;x < (yellow3.length); x++){
+            
             if(yellow3[x].classList == "scheduler__slot   js-scheduler__day-slot"){
                 yellow3[x].classList = "scheduler__slot scheduler__slot--today js-scheduler__slot--today  js-scheduler__day-slot";
             }
